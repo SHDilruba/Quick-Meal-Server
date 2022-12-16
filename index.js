@@ -39,6 +39,14 @@ async function run(){
         res.send(service);
       });
 
+      app.post('/topServices', async(req, res) =>{
+        const service = req.body;
+        const result = await serviceCollection.insertOne(service);
+        console.log(result);
+        service._id = service.insertedId;
+        res.send(service);
+     });
+
   }
   finally{
   }
