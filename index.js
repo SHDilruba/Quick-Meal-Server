@@ -110,6 +110,14 @@ async function run(){
       res.send(reviews);
     });
 
+    app.post('/postReview', async(req, res) =>{
+      const review = req.body;
+      const result = await reviewCollection.insertOne(review);
+      console.log(result);
+      review._id = review.insertedId;
+      res.send(result);
+   });
+
   }
   finally{
   }
