@@ -18,6 +18,7 @@ async function run(){
   try{
       const serviceCollection = client.db('quickMeal').collection('services');
       const benefitCollection = client.db('quickMeal').collection('benefits');
+      const blogCollection = client.db('quickMeal').collection('blog');
 
         app.get('/services', async(req, res) =>{
           const query = {}
@@ -47,6 +48,13 @@ async function run(){
         service._id = service.insertedId;
         res.send(service);
      });
+
+     app.get('/blog', async(req, res) =>{
+      const query = {}
+      const cursor = blogCollection.find(query);
+      const blog = await cursor.toArray();
+      res.send(blog);
+    });
 
   }
   finally{
