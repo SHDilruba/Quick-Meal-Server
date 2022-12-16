@@ -25,6 +25,13 @@ async function run(){
           res.send(services);
       });
 
+      app.get('/topServices', async(req, res) =>{
+        const query = {}
+        const cursor = serviceCollection.find(query).sort({service_id: 1}).limit(3);
+        const services = await cursor.toArray();
+        res.send(services);
+      });
+
   }
   finally{
   }
